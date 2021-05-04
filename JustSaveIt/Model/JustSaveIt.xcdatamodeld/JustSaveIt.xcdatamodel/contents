@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="UserCategory" representedClassName="UserCategory" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="imageID" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="userDescription" optional="YES" attributeType="String"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UserItem" inverseName="category" inverseEntity="UserItem"/>
+    </entity>
+    <entity name="UserItem" representedClassName="UserItem" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="imageID" optional="YES" attributeType="String"/>
+        <attribute name="lastDateModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="userDescription" optional="YES" attributeType="String"/>
+        <attribute name="userRating" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserCategory" inverseName="items" inverseEntity="UserCategory"/>
+    </entity>
+    <fetchRequest name="FetchCategoryByName" entity="UserCategory" predicateString="name == $V1"/>
+    <fetchRequest name="FetchItemsOfCategory" entity="UserItem" predicateString="category.name == $V1"/>
+    <elements>
+        <element name="UserCategory" positionX="-63" positionY="-9" width="128" height="104"/>
+        <element name="UserItem" positionX="-63" positionY="-18" width="128" height="134"/>
+    </elements>
+</model>
